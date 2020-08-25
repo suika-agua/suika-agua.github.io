@@ -1,6 +1,6 @@
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
-url: http://blog.nswebfrog.com
+url: http://suika-agua.github.io
 author: nswebfrog
 highlighter: rouge
 exclude: ["Rakefile", "CNAME", "README.md"]
