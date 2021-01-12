@@ -7,44 +7,43 @@
 # 实际配置流程
 * build.gradle(app)简易配置
 
-
-    android {
-        compileSdkVersion 30
-        buildToolsVersion "30.0.3"
-        defaultConfig {
-            applicationId "com.example.FlavorDemo"
-            minSdkVersion 15
-            targetSdkVersion 30
-            versionCode 1
-            versionName "1.0"
-            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-            flavorDimensions("version")
-        }
-        buildTypes {
-            release {
-                minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        android {
+            compileSdkVersion 30
+            buildToolsVersion "30.0.3"
+            defaultConfig {
+                applicationId "com.example.FlavorDemo"
+                minSdkVersion 15
+                targetSdkVersion 30
+                versionCode 1
+                versionName "1.0"
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                flavorDimensions("version")
+            }
+            buildTypes {
+                release {
+                    minifyEnabled false
+                    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                }
+            }
+            productFlavors{
+                demo {
+                    /**
+                     * [google翻译]
+                     * 将次产品flavor(风味)分配给[版本]产品dimension(维度)。
+                     * 如果仅适用一个dimension，则此属性为可选属性，
+                     * 然后插件自动将所有模块的flavor分配给该dimension。
+                     * */
+                    dimension "version"
+                    applicationIdSuffix ".demo"
+                    versionNameSuffix "-demo"
+                }
+                full {
+                    dimension "version"
+                    applicationIdSuffix ".full"
+                    versionNameSuffix "-full"
+                }
             }
         }
-        productFlavors{
-            demo {
-                /**
-                 * [google翻译]
-                 * 将次产品flavor(风味)分配给[版本]产品dimension(维度)。
-                 * 如果仅适用一个dimension，则此属性为可选属性，
-                 * 然后插件自动将所有模块的flavor分配给该dimension。
-                 * */
-                dimension "version"
-                applicationIdSuffix ".demo"
-                versionNameSuffix "-demo"
-            }
-            full {
-                dimension "version"
-                applicationIdSuffix ".full"
-                versionNameSuffix "-full"
-            }
-        }
-    }
 
 *#参照developers中写法，将flavorDimensions()写在android标签下，报[Gradle DSL method not found:'lavorDimensions()']错误*
 *#转移flavorDimensions()至defaultConfig标签下，代码成功运行。*
