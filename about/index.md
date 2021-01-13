@@ -11,7 +11,7 @@ comments: no
 ### 联系方式：        
 
 个人邮箱: [suika0727@163.com](mailto:suika0727@163.com)     
-新浪微博: [webfrogs](https://weibo.com/u/2775728585)	    
+新浪微博: [aGua](https://weibo.com/u/2775728585)	    
 github : [aGua](https://github.com/suika-agua)       
 
 ----
