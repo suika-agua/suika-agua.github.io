@@ -167,10 +167,15 @@ main\...\strings.xml
     </resources>
 
 *#此处插入xml位置图、运行结果图*
-![图片](/assets/images/211012/Y4EAWBACDC%16940AL[RGZO.png)
-![图片](/assets/image/211012/2YN9_~]Z6%}DL6V[H9@`MM4.png)
-![图片](/assets/images/211012/A6EUC{V[TM4J(1{9N}W2RVV.png)
-![图片](/assets/images/211012/4@}{@ET3[]SR26$4R(}JFMR.png)
+
+![图片](/assets/images/DAY_211012/1.png)
+
+![图片](/assets/image/DAY_211012/2.png)
+
+![图片](/assets/images/DAY_211012/3.png)
+
+![图片](/assets/images/DAY_211012/4.png)
+
 ## 更改默认源代码集配置
 
 
