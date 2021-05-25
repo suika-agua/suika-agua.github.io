@@ -17,4 +17,4 @@ github : [aGua](https://github.com/suika-agua)
 ----
 
 
-[![新浪微博](https://wx4.sinaimg.cn/large/a57241c9gy1g0gm39ldkvj21901o0b2a.jpg)](https://weibo.com/2775728585/profile?topnav=1&wvr=6)
+[![新浪微博](https://wx1.sinaimg.cn/mw1024/a57241c9ly1gq9z8u5jukj20gq0gk77o.jpg)](https://weibo.com/2775728585/profile?topnav=1&wvr=6)
