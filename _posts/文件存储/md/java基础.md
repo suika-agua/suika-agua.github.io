@@ -1,4 +1,4 @@
-# java
+# Java基础
 
 ## 面向对象
 
@@ -39,7 +39,6 @@
 ### 有哪些
 
 - List，Set，Map及特点
-- 对比
 
 	- 放入顺序，元素可否重复，增删效率，查找效率，查看方式
 
@@ -47,27 +46,55 @@
 
 - 线程安全集合
 
-	- Vector,HashTable,ConcurrentHashMap,StringBuffer
+	- Vector,HashTable,StringBuffer
 
 - ArrayList&LinkedList
+
+	- 地址连续&链式存储
+	- 优缺点
+	- 扩容方式
+
 - ArrayList&Vector
+
+	- 区别
+
 - HashSet&TreeSet
 
-	- 哈希表
+	- 实现方法
+	- 区别
+	- 就业空间
 
-- HashMap与TreeMap、HashTable
-- HashMap 、HashTable、HashSet
+- HashMap&HashTable
+
+	- 共同点
+
+		- 都是双列集合（数组+链表），底层都是哈希算法 
+  //HashMap1.8后长度超过阈值，为了便于查询会转换为红黑树
+
+	- 区别
+
+		- HashMap线程不安全效率高，HashTable线程安全效率低
+		- HashMap可以存储null key,null value
+		- HashTable不可以存储null key,null value
+		- HashTable方法线程安全
+
+- HashMap/HashTable&TreeMap
+
+	- 就业空间（同HashSet&TreeSet）
+
 - set集合从原理上如何保证不重复
-- HashMap和HashTable的主要区别，两者底层实现的数据结构
-- HashMap、ConcurrentHashMap、hash()相关原理解析
 
-	- 1.8变化
-	- 何时扩容，扩容的算法
-	- Hashmap如何解决散列碰撞（冲突）
-	- ArrayMap跟SparseArray在HashMap上面的改进*
+	- 通常
+	- HashSet
 
-		- ArrayMap
-		- SparseArray
+- Hashmap如何解决散列碰撞
+
+	- 调用put/get方法时，都先调用hashcode()，有冲突时再调用equal()。
+	- 用链表来解决碰撞问题，碰撞发生，会将数据存储在下一个节点。
+
+- Hashmap底层为什么是线程不安全的
+
+	- 并发容易出现死循环：扩容调用的resize()容易在一个桶上形成环形链表
 
 ## 反射
 
@@ -212,13 +239,11 @@
 
 ### 12、接口的意义：规范、拓展、回调
 
-### 13、父类的静态方法不能被子类重写
-
 ### 16、为什么复写equals方法时需要复写hashcode方法
 
 - equals中用==进行比较，若非基本数据类型，则比较在内存中的地址
 - hashCode返回当前对象的哈希散列码，补充协议
-- https://blog.csdn.net/weixin_38869158/article/details/107557257
+- 即两个地址不同对象，希望他们进入同一个bucket，改写equal判断子元素后，必须要重写hashcode方法
 
 ### 17、equals和hashcode的关系
 
@@ -245,7 +270,7 @@
 
 - 非空性
 
-	- 子主题 1
+	- 比较对象不能为空
 
 ### 18、Java为什么跨平台
 
@@ -253,9 +278,18 @@
 
 ### 20、final、finally、finalize的区别
 
-- 修饰词，修饰class为不可继承拓展，修饰变量为必可修改，修饰方法为不可重写
+- final修饰词，修饰类为不可继承拓展，修饰变量为必可修改，修饰方法为不可重写
 - finally是保证重点代码一定要被执行的机制，用于try-finally,try-catch-finally，来进行类似关闭JDBC连接，保证unlock锁等动作
 - finalize被用于保证对象在被垃圾收集前完成特定资源的回收，现已不推荐使用
+
+### 26、Java的四种引用及使用场景
+
+- 强引用（FinalReference）：在内存不足时不会被回收。平常用的最多的对象，如新创建的对象。
+- 软引用（SoftReference）:在内存不足时会被回收，用于实现内存敏感的高速缓存
+- 弱引用（WeakReference）：只要GC回收器发现了他，就会将之回收。用于Map数据结构中，引用占用内存较大的对象
+- 虚引用（PhantomReference）:在回收之前，会被放入ReferenceQueue，JVM不会自动将该Referent字段值设为null。其他引用被JVM回收之后才会被放入ReferenceQueue中。用于实现一个对象被回收之前的做一些清理工作。
+
+	- 你可以通过判断queue里面是不是有对象来判断你的对象是不是要被回收了
 
 ### 22、Java对象的生命周期
 
@@ -287,24 +321,15 @@
 
 	- 垃圾回收器对该对象的所占用的内存空间进行回收或者再分配
 
-### 26、Java的四种引用及使用场景
-
-- 强引用（FinalReference）：在内存不足时不会被回收。平常用的最多的对象，如新创建的对象。
-- 软引用（SoftReference）:在内存不足时会被回收，用于实现内存敏感的高速缓存
-- 弱引用（WeakReference）：只要GC回收器发现了他，就会将之回收。用于Map数据结构中，引用占用内存较大的对象
-- 虚引用（PhantomReference）:在回收之前，会被放入ReferenceQueue，JVM不会自动将该Referent字段值设为null。其他引用被JVM回收之后才会被放入ReferenceQueue中。用于实现一个对象被回收之前的做一些清理工作。
-
-	- 你可以通过判断queue里面是不是有对象来判断你的对象是不是要被回收了
-
 ### 27、类的加载过程（Person person = new Person()）
 
 - 先找到Person.class文件，并加载到内存中
 - 执行该类中static代码块，给Persion.class类进行初始化
 - 在堆内存中开辟空间分配内存地址
-- 在堆内存中简历对象的特有属性，并进行默认初始化
+- 在堆内存中建立对象的特有属性，并进行默认初始化
 - 对属性进行初始化
 - 对对象进行构造代码块初始化
-- 对对象进行与之对应的都在函数进行初始化
+- 对对象进行与之对应的构造函数进行初始化
 - 将内存地址付给栈内存中的p变量
 
 ### 28、整型常量池
@@ -314,11 +339,16 @@
 - Integer和int同理
 - 存储位置：Integer类中有一个静态内部类IntegerCache
 
-### 30、深拷贝和浅拷贝的区别*
+### 30、深拷贝和浅拷贝的区别（
 
 ### 31、Integer对int的优化
 
-### 32、IO、NIO、OKIO
+- Ingeter是int的包装类
+- int的初值为0，Ingeter的初值为null
+- Integer和int对比会自动拆箱
+- 直接赋值数字会拆箱比较，Integer与new Integer不会相等
+
+### 32、IO、NIO、OKIO（
 
 - IO面向流，一次处理一个字节；NIO面向缓冲区，一次产生/消费一个数据块
 - IO是阻塞的，NIO是非阻塞的
@@ -333,7 +363,5 @@
 ### 
 
 ### 
-
-## 子主题 1
 
 *XMind - Evaluation Version*
